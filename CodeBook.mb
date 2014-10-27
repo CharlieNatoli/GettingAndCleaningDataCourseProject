@@ -1,0 +1,12 @@
+CodeBook 
+
+The R script is broken up into 8 parts, which are labeled in the script itself.
+
+1: This part downloads the file into the working directory and unzips it there. the "url" variable is the url to the data, and is passed into the "download.file command
+2: This part reads the files into R. First, it sets the working directory as the unzipped folder (titled "UCI HAR Dataset"). Then, it creates the variable "files," which is a string of all of the files in "UCI HAR Dataset" and their filepaths. The for loop then reads in each of the files, first as a variable named "table," and then assigns them names based on their file names. The file replaces the "/" character with a "." in all of the file names, as "/" was creating problems in the code later on.  
+3: This part combines the parts of the dataset that we are using together into a data table called "Combined Data." The first for loop puts the activity names into the column "ActivityNames." the second for loop names the proceeding columns based on the names of the variables
+4: This part makes a vector with all of the names variables that are a mean or a standard deviation titled "MeanStdVariables." Here, it takes the names from the file "activity_labels.txt" that habe the word "mean" or "std" in them.
+5: This part uses "MeanStdVariables" to make a data frame called "MeanStdOnly" that contains all of the variables that are a mean or a standard deviation. First, it just attaches the Subject, Activity Number, and Activity Name. Then, the for loop adds to "MeanStdOnly" the columns in "CombinedData" that have the same names as the contents of "MeanStdVariables"
+6: This part makes a data frame titled "Means" with columns for subject and activity number/name. It populates these with on row for each subject/activity combination
+7: This part adds columns to the "Means" with the means  . In the two for loops, i refers to the rows and j refers to the columns
+8: This part exports "Means" as a file titled "CourseProject." Note that it saves it into the "UCI HAR Dataset" folder, as that is now the working directory.  
